@@ -1,0 +1,21 @@
+// simple usage for a local db
+const db = mongojs('mydb', ['mycollection'])
+
+// the db is on a remote server (the port default to mongo)
+const db = mongojs('example.com/mydb', ['mycollection'])
+
+// we can also provide some credentials
+const db = mongojs('username:password@example.com/mydb', ['mycollection'])
+
+// connect using SCRAM-SHA-1 mechanism
+const db = mongojs('username:password@example.com/mydb?authMechanism=SCRAM-SHA-1', ['mycollection'])
+
+// connect using a different auth source
+const db = mongojs('username:password@example.com/mydb?authSource=authdb', ['mycollection'])
+
+// connect with options
+const db = mongojs('username:password@example.com/mydb', ['mycollection'], { ssl: true })
+
+// connect now, and worry about collections later
+const db = mongojs('mydb')
+const mycollection = db.collection('mycollection')
