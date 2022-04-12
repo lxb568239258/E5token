@@ -1,0 +1,2 @@
+<!-- When deploying an app, you should always load the CDN version of the office.js file.-->
+<script src="https://appsforoffice.microsoft.com/lib/1.0/hosted/office.js"></script> 
