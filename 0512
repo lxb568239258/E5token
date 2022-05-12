@@ -1,0 +1,9 @@
+async function run() {
+    await Excel.run(async (context) => {
+        const queries = context.workbook.queries;
+        queries.load("items");
+        await context.sync();
+        console.log("rows loaded: " + queries.items.map((q) => q.rowsLoadedCount));
+        console.log("last refresh dates: " + queries.items.map((q) => q.refreshDate));
+    });
+}
