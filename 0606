@@ -1,0 +1,11 @@
+$Setting = Get-AzureADDirectorySetting -Id (Get-AzureADDirectorySetting | where -Property DisplayName -Value "Group.Unified" -EQ).id
+grant_type = authorization_code
+    client_id = *my_client_id*
+    client_secret = *my_client_secret*
+    session_state = e5fb6cd5-28f7-4dfc-b793-9ce8522534ac
+    code = *code_that_i_got_to_my_callback_url*
+    resource = https://outlook.office365.com/
+client-request-id: *some_random_id*
+    return-client-request-id: true,
+    authorization: 'Bearer ' + *access_token*
+    Accept: '*/*'
