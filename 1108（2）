@@ -1,0 +1,171 @@
+import requests
+
+url = "https://{{my-env_name}}.{{my_region}}.dynamics.com/api/data/v9.0/msdyn_workorders"
+
+payload = "{\n   \n}"
+headers = {
+  'Accept': 'application/json',
+  'OData-MaxVersion': '4.0',
+  'OData-Version': '4.0',
+  'If-None-Match': 'null',
+  'Authorization': 'Bearer eyXXX',
+  'Content-Type': 'application/json',
+}
+
+response = requests.request("POST", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+{
+    "error": {
+        "code": "0x80040265",
+
+        "message": "The Service Account is required.",
+
+        "innererror": {
+            "message": "The Service Account is required.",
+
+            "type": "System.ServiceModel.FaultException`1[[Microsoft.Xrm.Sdk.OrganizationServiceFault, Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]",
+
+            "stacktrace": "   at Microsoft.Crm.Extensibility.OrganizationSdkServiceInternal.CreateInternal(Entity entity, InvocationContext invocationContext, CallerOriginToken callerOriginToken, WebServiceType serviceType, Boolean checkAdminMode, Dictionary`2 optionalParameters)\r\n
+
+   at Microsoft.Crm.Extensibility.OData.CrmODataExecutionContext.CreateOrganizationResponse(Entity entity)\r\n
+
+   at Microsoft.Crm.Extensibility.OData.CrmODataServiceDataProvider.CreateEdmEntity(CrmODataExecutionContext context, String edmEntityName, EdmEntityObject entityObject, Boolean isUpsert)\r\n
+
+   at Microsoft.Crm.Extensibility.OData.EntityController.PostEntitySetImplementation(String& entitySetName, EdmEntityObject entityObject)\r\n
+
+   at Microsoft.Crm.Extensibility.OData.CrmODataUtilities.<>c__DisplayClass10_0`2.<InvokeActionAndLogMetric>b__0()\r\n
+
+   at Microsoft.PowerApps.CoreFramework.ActivityLoggerExtensions.Execute[TResult](ILogger logger, EventId eventId, ActivityType activityType, Func`1 func, IEnumerable`1 additionalCustomProperties)\r\n
+
+   at Microsoft.Xrm.Telemetry.XrmTelemetryExtensions.Execute[TResult](ILogger logger, XrmTelemetryActivityType activityType, Func`1 func)\r\n
+
+   at lambda_method(Closure , Object , Object[] )\r\n
+
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)\r\n
+
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)\r\n
+
+--- End of stack trace from previous location where exception was thrown ---\r\n
+
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\r\n
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()\r\n
+
+--- End of stack trace from previous location where exception was thrown ---\r\n
+
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\r\n   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()\r\n
+
+--- End of stack trace from previous location where exception was thrown ---\r\n
+
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\r\n   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()"
+        }
+    }
+}
+我将服务帐户添加到 POST 的正文中
+查看工单的 model： https://docs.microsoft.com/en-us/dynamics365/customer-engagement/web-api/msdyn_workorder?view=dynamics-ce-odata-9
+
+{
+  "msdyn_serviceaccount": "{{an existing account id}}"
+}
+
+当 POST 的正文包含 msdyn_serviceaccount 字段时收到错误
+{
+    "error": {
+
+        "code": "0x0",
+
+
+        "message": "An error occurred while validating input parameters: Microsoft.OData.ODataException: A 'PrimitiveValue' node with non-null value was found when trying to read the value of the property 'msdyn_serviceaccount'; however, a 'StartArray' node, a 'StartObject' node, or a 'PrimitiveValue' node with null value was expected.\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightPropertyAndValueDeserializer.ValidateExpandedNestedResourceInfoPropertyValue(IJsonReader jsonReader, Nullable`1 isCollection, String propertyName)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightResourceDeserializer.ReadPropertyWithValue(IODataJsonLightReaderResourceState resourceState, String propertyName, Boolean isDeltaResourceSet)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightResourceDeserializer.<>c__DisplayClass9_0.<ReadResourceContent>b__0(PropertyParsingResult propertyParsingResult, String propertyName)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightDeserializer.ProcessProperty(PropertyAndAnnotationCollector propertyAndAnnotationCollector, Func`2 readPropertyAnnotationValue, Action`2 handleProperty)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightResourceDeserializer.ReadResourceContent(IODataJsonLightReaderResourceState resourceState)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightReader.StartReadingResource()\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightReader.ReadResourceSetItemStart(PropertyAndAnnotationCollector propertyAndAnnotationCollector, SelectedPropertiesNode selectedProperties)\r\n   at 
+
+Microsoft.OData.JsonLight.ODataJsonLightReader.ReadAtStartImplementationSynchronously(PropertyAndAnnotationCollector propertyAndAnnotationCollector)\r\n 
+
+  at Microsoft.OData.ODataReaderCore.ReadImplementation()\r\n
+
+   at Microsoft.OData.ODataReaderCore.InterceptException[T](Func`1 action)\r\n
+
+   at System.Web.OData.Formatter.Deserialization.ODataReaderExtensions.ReadResourceOrResourceSet(ODataReader reader)\r\n
+
+   at System.Web.OData.Formatter.Deserialization.ODataResourceDeserializer.Read(ODataMessageReader messageReader, Type type, ODataDeserializerContext readContext)\r\n
+
+   at System.Web.OData.Formatter.ODataMediaTypeFormatter.ReadFromStream(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)",
+        "innererror": {
+
+            "message": "An error occurred while validating input parameters: Microsoft.OData.ODataException: A 'PrimitiveValue' node with non-null value was found when trying to read the value of the property 'msdyn_serviceaccount'; however, a 'StartArray' node, a 'StartObject' node, or a 'PrimitiveValue' node with null value was expected.\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightPropertyAndValueDeserializer.ValidateExpandedNestedResourceInfoPropertyValue(IJsonReader jsonReader, Nullable`1 isCollection, String propertyName)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightResourceDeserializer.ReadPropertyWithValue(IODataJsonLightReaderResourceState resourceState, String propertyName, Boolean isDeltaResourceSet)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightResourceDeserializer.<>c__DisplayClass9_0.<ReadResourceContent>b__0(PropertyParsingResult propertyParsingResult, String propertyName)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightDeserializer.ProcessProperty(PropertyAndAnnotationCollector propertyAndAnnotationCollector, Func`2 readPropertyAnnotationValue, Action`2 handleProperty)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightResourceDeserializer.ReadResourceContent(IODataJsonLightReaderResourceState resourceState)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightReader.StartReadingResource()\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightReader.ReadResourceSetItemStart(PropertyAndAnnotationCollector propertyAndAnnotationCollector, SelectedPropertiesNode selectedProperties)\r\n
+
+   at Microsoft.OData.JsonLight.ODataJsonLightReader.ReadAtStartImplementationSynchronously(PropertyAndAnnotationCollector propertyAndAnnotationCollector)\r\n
+
+   at Microsoft.OData.ODataReaderCore.ReadImplementation()\r\n
+
+   at Microsoft.OData.ODataReaderCore.InterceptException[T](Func`1 action)\r\n
+
+   at System.Web.OData.Formatter.Deserialization.ODataReaderExtensions.ReadResourceOrResourceSet(ODataReader reader)\r\n
+
+   at System.Web.OData.Formatter.Deserialization.ODataResourceDeserializer.Read(ODataMessageReader messageReader, Type type, ODataDeserializerContext readContext)\r\n
+
+   at System.Web.OData.Formatter.ODataMediaTypeFormatter.ReadFromStream(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)",
+            "type": "Microsoft.Crm.CrmHttpException",
+            "stacktrace": "   at Microsoft.Crm.Extensibility.OData.CrmODataUtilities.ValidateInputParameters(ModelStateDictionary controllerModelState)\r\n
+
+   at Microsoft.Crm.Extensibility.OData.EntityController.PostEntitySetImplementation(String& entitySetName, EdmEntityObject entityObject)\r\n
+
+   at Microsoft.Crm.Extensibility.OData.CrmODataUtilities.<>c__DisplayClass10_0`2.<InvokeActionAndLogMetric>b__0()\r\n
+
+   at Microsoft.PowerApps.CoreFramework.ActivityLoggerExtensions.Execute[TResult](ILogger logger, EventId eventId, ActivityType activityType, Func`1 func, IEnumerable`1 additionalCustomProperties)\r\n
+
+   at Microsoft.Xrm.Telemetry.XrmTelemetryExtensions.Execute[TResult](ILogger logger, XrmTelemetryActivityType activityType, Func`1 func)\r\n
+
+   at lambda_method(Closure , Object , Object[] )\r\n
+
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)\r\n
+
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\r\n
+
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n
+
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()\r\n
+
+--- End of stack trace from previous location where exception was thrown ---\r\n
+
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\r\n
+
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n
+
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()\r\n
+
+--- End of stack trace from previous location where exception was thrown ---\r\n
+
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\r\n   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n
+
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()"
+        }
+    }
+}
