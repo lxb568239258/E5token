@@ -1,0 +1,156 @@
+from O365 import Account
+
+credentials = ('client_id', 'client_secret')
+
+account = Account(credentials)
+m = account.new_message()
+m.to.add('to_example@example.com')
+m.subject = 'Testing!'
+m.body = "George Best quote: I've stopped drinking, but only while I'm asleep."
+m.send()
+
+scopes = ['my_required_scopes']  # you can use scope helpers here (see Permissions and Scopes section)
+
+account = Account(credentials)
+
+if not account.is_authenticated:  # will check if there is a token and has not expired
+    # ask for a login
+    # console based authentication See Authentication for other flows
+    account.authenticate(scopes=scopes)
+
+# now we are autheticated
+# use the library from now on
+
+# ...
+
+from O365 import Account
+credentials = ('my_client_id', 'my_client_secret')
+
+# the default protocol will be Microsoft Graph
+# the default authentication method will be "on behalf of a user"
+
+account = Account(credentials)
+if account.authenticate(scopes=['basic', 'message_all']):
+   print('Authenticated!')
+
+# 'basic' adds: 'offline_access' and 'https://graph.microsoft.com/User.Read'
+# 'message_all' adds: 'https://graph.microsoft.com/Mail.ReadWrite' and 'https://graph.microsoft.com/Mail.Send'
+
+from O365 import Account
+
+credentials = ('my_client_id', 'my_client_secret')
+
+# the default protocol will be Microsoft Graph
+
+account = Account(credentials, auth_flow_type='credentials', tenant_id='my-tenant-id')
+if account.authenticate():
+   print('Authenticated!')
+   
+account = Account(credentials)
+account.authenticate(scopes=['basic', 'message_all'])
+
+from flask import request
+from O365 import Account
+
+
+@route('/stepone')
+def auth_step_one():
+    # callback = absolute url to auth_step_two_callback() page, https://domain.tld/steptwo
+    callback = url_for('auth_step_two_callback', _external=True)  # Flask example
+
+    account = Account(credentials)
+    url, state = account.con.get_authorization_url(requested_scopes=my_scopes,
+                                                   redirect_uri=callback)
+
+    # the state must be saved somewhere as it will be needed later
+    my_db.store_state(state) # example...
+
+    return redirect(url)
+
+@route('/steptwo')
+def auth_step_two_callback():
+    account = Account(credentials)
+
+    # retreive the state saved in auth_step_one
+    my_saved_state = my_db.get_state()  # example...
+
+    # rebuild the redirect_uri used in auth_step_one
+    callback = 'my absolute url to auth_step_two_callback'
+
+    # get the request URL of the page which will include additional auth information
+    # Example request: /steptwo?code=abc123&state=xyz456
+    requested_url = request.url  # uses Flask's request() method
+
+    result = account.con.request_token(requested_url,
+                                       state=my_saved_state,
+                                       redirect_uri=callback)
+    # if result is True, then authentication was succesful
+    #  and the auth token is stored in the token backend
+    if result:
+        return render_template('auth_complete.html')
+    # else ....
+    
+    from O365 import Account
+
+credentials = ('client_id', 'client_secret')
+
+scopes = ['https://graph.microsoft.com/Mail.ReadWrite', 'https://graph.microsoft.com/Mail.Send']
+
+account = Account(credentials, scopes=scopes)
+account.authenticate()
+
+# The latter is exactly the same as passing scopes to the authenticate method like so:
+# account = Account(credentials)
+# account.authenticate(scopes=scopes)
+
+protocol_graph = MSGraphProtocol()
+
+scopes_graph = protocol.get_scopes_for('message all')
+# scopes here are: ['https://graph.microsoft.com/Mail.ReadWrite', 'https://graph.microsoft.com/Mail.Send']
+
+account = Account(credentials, scopes=scopes_graph)
+
+protocol_office = MSOffice365Protocol()
+
+scopes_office = protocol.get_scopes_for('message all')
+# scopes here are: ['https://outlook.office.com/Mail.ReadWrite', 'https://outlook.office.com/Mail.Send']
+
+account = Account(credentials, scopes=scopes_office)
+
+from O365 import Account, FileSystemTokenBackend
+
+credentials = ('id', 'secret')
+
+# this will store the token under: "my_project_folder/my_folder/my_token.txt".
+# you can pass strings to token_path or Path instances from pathlib
+token_backend = FileSystemTokenBackend(token_path='my_folder', token_filename='my_token.txt')
+account = Account(credentials, token_backend=token_backend)
+
+# This account instance tokens will be stored on the token_backend configured before.
+# You don't have to do anything more
+# ...
+
+from O365 import Account
+from O365.utils import FirestoreBackend
+from google.cloud import firestore
+
+credentials = ('id', 'secret')
+
+# this will store the token on firestore under the tokens collection on the defined doc_id.
+# you can pass strings to token_path or Path instances from pathlib
+user_id = 'whatever the user id is'  # used to create the token document id
+document_id = f"token_{user_id}"  # used to uniquely store this token
+token_backend = FirestoreBackend(client=firestore.Client(), collection='tokens', doc_id=document_id)
+account = Account(credentials, token_backend=token_backend)
+
+# This account instance tokens will be stored on the token_backend configured before.
+# You don't have to do anything more
+# ...
+
+from O365 import Account, MSGraphProtocol  # same as from O365.connection import MSGraphProtocol
+
+# ...
+
+# try the api version beta of the Microsoft Graph endpoint.
+protocol = MSGraphProtocol(api_version='beta')  # MSGraphProtocol defaults to v1.0 api version
+account = Account(credentials, protocol=protocol)
