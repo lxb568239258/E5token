@@ -1,0 +1,36 @@
+1. 注册Azure AD应用程序
+
+要使用Microsoft Graph API访问Office 365数据，我们需要先注册一个Azure AD应用程序，以便获取相应的应用程序ID和机密。
+
+2. 添加API权限
+
+在Azure门户中为我们创建的应用程序添加“Microsoft Graph”权限，以便我们可以使用Microsoft Graph API访问Office 365数据。
+
+3. 获取访问令牌
+
+我们需要使用OAuth 2.0协议获取访问Office 365数据所需的访问令牌。可以使用Spring Security OAuth 2.0来处理OAuth 2.0流程。
+
+4. 调用Microsoft Graph API
+
+我们可以使用Spring RestTemplate或者Feign客户端来调用Microsoft Graph API获取数据。
+
+下面是一个示例代码：
+
+// 注入RestTemplate
+@Autowired
+private RestTemplate restTemplate;
+
+// 注入OAuth2AuthorizedClientService
+@Autowired
+private OAuth2AuthorizedClientService oauth2ClientService;
+
+// 发送请求获取数据
+public SomeData getSomeDataFromOffice365() {
+    OAuth2AuthenticationToken authentication = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+    OAuth2AuthorizedClient oauth2Client = oauth2ClientService.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
+    HttpHeaders headers = new HttpHeaders();
+    headers.setBearerAuth(oauth2Client.getAccessToken().getTokenValue());
+    HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+    ResponseEntity<SomeData> response = restTemplate.exchange("https://graph.microsoft.com/v1.0/me", HttpMethod.GET, entity, SomeData.class);
+    return response.getBody();
+}
