@@ -1,0 +1,263 @@
+{
+    "value": [
+        {
+            "Id": "Exchange",
+            "DisplayName": "Exchange Online",
+            "FeatureNames": [
+                "Sign-in",
+                "E-Mail and calendar access",
+                "E-Mail timely delivery",
+                "Management and Provisioning",
+                "Voice mail"
+            ]
+        },
+        {
+            "Id": "Lync",
+            "DisplayName": "Lync Online",
+            "FeatureNames": [
+                "Audio and Video",
+                "Federation",
+                "Management and Provisioning",
+                "Sign-In",
+                "All Features",
+                "Dial-In Conferencing",
+                "Online Meetings",
+                "Instant Messaging",
+                "Presence",
+                "Mobility"
+            ]
+        }
+    ]
+}
+
+{
+    "value": [
+        {
+            "Id": "Exchange",
+            "Workload": "Exchange",
+            "StatusDate": "2015-04-11T00:00:00Z",
+            "WorkloadDisplayName": "Exchange Online",
+            "Status": "ServiceOperational",
+            "IncidentIds": [],
+            "FeatureGroupStatusCollection": [
+                {
+                    "Feature": "Signin",
+                    "FeatureGroupDisplayName": "Sign-in",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Access",
+                    "FeatureGroupDisplayName": "E-Mail and calendar access",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Delivery",
+                    "FeatureGroupDisplayName": "E-Mail timely delivery",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Provisioning",
+                    "FeatureGroupDisplayName": "Management and Provisioning",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "UnifiedMessaging",
+                    "FeatureGroupDisplayName": "Voice mail",
+                    "FeatureStatus": "ServiceOperational"
+                }
+            ]
+        },
+        {
+            "Id": "Lync",
+            "Workload": "Lync",
+            "StatusDate": "2015-04-11T00:00:00Z",
+            "WorkloadDisplayName": "Lync Online",
+            "Status": "ServiceOperational",
+            "IncidentIds": [],
+            "FeatureGroupStatusCollection": [
+                {
+                    "Feature": "AudioVideo",
+                    "FeatureGroupDisplayName": "Audio and Video",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Federation",
+                    "FeatureGroupDisplayName": "Federation",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "ManagementandProvisioning",
+                    "FeatureGroupDisplayName": "Management and Provisioning",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Sign-In",
+                    "FeatureGroupDisplayName": "Sign-In",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "All",
+                    "FeatureGroupDisplayName": "All Features",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "DialInConferencing",
+                    "FeatureGroupDisplayName": "Dial-In Conferencing",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "OnlineMeetings",
+                    "FeatureGroupDisplayName": "Online Meetings",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "InstantMessaging",
+                    "FeatureGroupDisplayName": "Instant Messaging",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Presence",
+                    "FeatureGroupDisplayName": "Presence",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Mobility",
+                    "FeatureGroupDisplayName": "Mobility",
+                    "FeatureStatus": "ServiceOperational"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "value": [
+        {
+            "Id": "Exchange",
+            "Workload": "Exchange",
+            "StatusDate": "2015-04-11T00:00:00Z",
+            "WorkloadDisplayName": "Exchange Online",
+            "Status": "ServiceOperational",
+            "IncidentIds": [],
+            "FeatureGroupStatusCollection": [
+                {
+                    "Feature": "Signin",
+                    "FeatureGroupDisplayName": "Sign-in",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Access",
+                    "FeatureGroupDisplayName": "E-Mail and calendar access",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Delivery",
+                    "FeatureGroupDisplayName": "E-Mail timely delivery",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Provisioning",
+                    "FeatureGroupDisplayName": "Management and Provisioning",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "UnifiedMessaging",
+                    "FeatureGroupDisplayName": "Voice mail",
+                    "FeatureStatus": "ServiceOperational"
+                }
+            ]
+        },
+        {
+            "Id": "Exchange",
+            "Workload": "Exchange",
+            "StatusDate": "2015-04-10T00:00:00Z",
+            "WorkloadDisplayName": "Exchange Online",
+            "Status": "InformationAvailable",
+            "IncidentIds": [
+                "EX20870"
+            ],
+            "FeatureGroupStatusCollection": [
+                {
+                    "Feature": "Signin",
+                    "FeatureGroupDisplayName": "Sign-in",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Access",
+                    "FeatureGroupDisplayName": "E-Mail and calendar access",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Delivery",
+                    "FeatureGroupDisplayName": "E-Mail timely delivery",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "Provisioning",
+                    "FeatureGroupDisplayName": "Management and Provisioning",
+                    "FeatureStatus": "ServiceOperational"
+                },
+                {
+                    "Feature": "UnifiedMessaging",
+                    "FeatureGroupDisplayName": "Voice mail",
+                    "FeatureStatus": "InformationAvailable"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "value": [
+        {
+            "Id": "EX20119",
+            "Name": "EX20119",
+            "Title": null,
+            "StartTime": "2015-04-01T22:25:00Z",
+            "EndTime": "2015-04-07T21:48:00Z",
+            "Status": "Service restored",
+            "Messages": [
+                {
+                    "PublishedTime": "2015-04-01T22:34:28.76Z",
+                    "MessageText": "Current Status: Engineers are investigating an issue in which some customers may be experiencing problems accessing or using Exchange Online services or features. This event is actively being investigated. More information will be provided shortly."
+                },
+                {
+                    "PublishedTime": "2015-04-03T18:45:32.56Z",
+                    "MessageText": "Current Status: Engineers are implementing a fix within the affected infrastructure to remediate Exchange Online archive access issues. \n\nUser Experience: Affected users are unable to access online archives when using Outlook Web App (OWA). As a workaround, users may be able to access online archives via the Outlook client.\n\nCustomer Impact: Customer impact appears to be limited at this time. This issue only affects hybrid customers.\n\nPreliminary Root Cause: As part of our ongoing work, an updated certificate was deployed to the infrastructure; however, a caching issue has caused the infrastructure to use an expired certificate which is causing archive access issues.  \n\nNext Update by: Monday, April 6, 2015, at 9:00 PM UTC\n"
+                },
+                {
+                    "PublishedTime": "2015-04-06T21:17:34.007Z",
+                    "MessageText": "Current Status: Deployment of the fix is almost complete. Engineers are monitoring service health to ensure the issue has been remediated. \n\nUser Experience: Affected users are unable to access online archives when using Outlook Web App (OWA). As a workaround, users may be able to access online archives via the Outlook client. \n\nCustomer Impact: Customer impact appears to be limited at this time. This issue only affects hybrid customers.\n\nPreliminary Root Cause: As part of our ongoing work, an updated certificate was deployed to the infrastructure; however, a caching issue has caused the infrastructure to use an expired certificate which is causing archive access issues. \n\nNext Update by: Tuesday, April 7, 2015, at 10:00 PM UTC "
+                },
+                {
+                    "PublishedTime": "2015-04-08T21:54:49.06Z",
+                    "MessageText": "Final Status: Engineers have implemented a fix which remediated end-user impact. \r\n\r\nUser Experience: Affected users were unable to access online archives when using Outlook Web App (OWA).\r\n\r\nCustomer Impact: Customer impact appears to have been limited. This issue only affected hybrid customers.\r\n\r\nIncident Start Time: Monday, March 30, 2015, at 9:28 AM UTC\r\n\r\nIncident End Time: Tuesday, April 7, 2015, at 8:00 PM UTC\r\n\r\nPreliminary Root Cause: As part of our ongoing work, an updated certificate was deployed to the infrastructure; however, a caching issue has caused the infrastructure to use an expired certificate which is causing archive access issues.  \r\n\r\nNext Steps: The following is a list of known action item(s) associated with this incident. As part of the Office 365 problem management process, additional engineering actions may be identified to improve the overall service.\r\n- Action: Review the monitoring infrastructure for improvements as this event was reported by customers before an alert prompted a high priority investigation. \r\n\r\nA post-incident report will be available on the Service Health Dashboard within five business days."
+                }
+            ],
+            "LastUpdatedTime": "2015-04-08T21:54:49.55Z",
+            "Workload": "Exchange Online",
+            "WorkloadDisplayName": "Exchange",
+            "Feature": "Access",
+            "FeatureDisplayName": "E-Mail and calendar access"
+        },
+        {
+            "Id": "EX20789",
+            "Name": "EX20789",
+            "Title": null,
+            "StartTime": "2015-04-06T20:00:00Z",
+            "EndTime": "2015-04-07T23:00:00Z",
+            "Status": "Service restored",
+            "Messages": [
+                {
+                    "PublishedTime": "2015-04-07T23:26:44.643Z",
+                    "MessageText": "Final Status: Engineers have validated that the deployed fix has resolved the issue and that service is restored.\r\n\r\nUser Experience: Affected users were unable to send or receive email while using Exchange Web Services (EWS) on their mobile devices.\r\n\r\nCustomer Impact: Customer impact appeared to be limited during this event. This issue was only affecting customers that use third-party Mobile Device Management software from Good Technology. As a workaround to provide immediate relief from impact, engineers implemented a configuration change for customers who reported this issue to Microsoft Support.\r\n\r\nIncident Start Time: Wednesday, April 1, 2015, at 2:00 PM UTC\r\n\r\nIncident End Time: Tuesday, April 7, 2015, at 10:00 PM UTC\r\n\r\nPreliminary Root Cause: As part of our ongoing efforts to improve service resiliency, an update was deployed to the infrastructure that facilitates connections from multiple Exchange Online protocols to mailbox databases. The update, however, contained a code issue that caused connectivity issues in some scenarios. \r\n\r\nNext Steps: The following is a list of known action item(s) associated with this incident. As part of the Office 365 problem management process, additional engineering actions may be identified to improve the overall service.\r\n- Action: Review the infrastructure update process to prevent reoccurrences of this scenario.\r\n\r\nPlease consider this service notification the final update on the event."
+                }
+            ],
+            "LastUpdatedTime": "2015-04-07T23:26:45.08Z",
+            "Workload": "Exchange Online",
+            "WorkloadDisplayName": "Exchange",
+            "Feature": "Access",
+            "FeatureDisplayName": "E-Mail and calendar access"
+        }
+    ]
+}
