@@ -1,0 +1,43 @@
+makecert -r -pe -n "CN=MyCompanyName MyAppName Cert" -b 03/15/2015 -e 03/15/2017 -ss my -len 2048
+$cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+ $cer.Import("mycer.cer")
+ $bin = $cer.GetRawCertData()
+ $base64Value = [System.Convert]::ToBase64String($bin)
+ $bin = $cer.GetCertHash()
+ $base64Thumbprint = [System.Convert]::ToBase64String($bin)
+ $keyid = [System.Guid]::NewGuid().ToString()
+
+ "keyCredentials": [
+     {
+         "customKeyIdentifier" : "$base64Thumbprint_from_above",
+         "keyId": "$keyid_from_above",
+         "type": "AsymmetricX509Cert",
+         "usage": "Verify",
+         "value": "$base64Value_from_above"
+     }
+ ],
+
+ {
+  "aud": "https://manage.office.com",
+  "iss": "https://sts.windows.net/41463f53-8812-40f4-890f-865bf6e35190/",
+  "iat": 1427246416,
+  "nbf": 1427246416,
+  "exp": 1427250316,
+  "ver": "1.0",
+  "tid": "41463f53-8812-40f4-890f-865bf6e35190",
+  "amr": [
+    "pwd"
+  ],
+  "oid": "1cef1fdb-ff52-48c4-8e4e-dfb5ea83d357",
+  "upn": "admin@contoso.onmicrosoft.com",
+  "puid": "1003BFFD8EC47CA6",
+  "sub": "7XpD5OWAXM1OWmKiVKh1FOkKXV4N3OSRol6mz1pxxhU",
+  "given_name": "John",
+  "family_name": "Doe",
+  "name": "Contoso, Inc.",
+  "unique_name": "admin@contoso.onmicrosoft.com",
+  "appid": "a6099727-6b7b-482c-b509-1df309acc563",
+  "appidacr": "1",
+  "scp": "ActivityFeed.Read ServiceHealth.Read",
+  "acr": "1"
+}
